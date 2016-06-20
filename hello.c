@@ -59,6 +59,13 @@ static void test_dlist()
 
     print_dlist(head, print_dlist_int);
 
+    remove_dlist_node(&head, item3, sizeof(int));
+    remove_dlist_node(&head, item1, sizeof(int));
+
+    print_dlist(head, print_dlist_int);
+
+    clear_dlist(&head);
+
     free(item1);
     free(item2);
     free(item3);
@@ -124,9 +131,9 @@ static void test_bintree()
 
 int main()
 {
-    test_slist();
+    //test_slist();
     test_dlist();
-    test_stack();
+    //test_stack();
     test_queue();
     test_bintree();
 

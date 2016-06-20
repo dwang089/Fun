@@ -50,5 +50,6 @@ void *peek(struct stack_node *root)
         return root->data;
     }
 
+    printf("The stack is empty\n");
     return NULL;
 }

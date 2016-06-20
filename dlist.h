@@ -16,7 +16,10 @@ void insert_dlist_front(struct dlist_node **head, void *new_data);
 void insert_dlist_end(struct dlist_node **head, void *new_data);
 void insert_dlist_after(struct dlist_node *prev_node, void *new_data);
 
-void remove_node(struct dlist_node **head, int position);
+struct dlist_node *get_dlist_node(struct dlist_node *head, void *data, size_t data_size);
+
+void remove_dlist_node(struct dlist_node **head, void *data, size_t data_size);
+void clear_dlist(struct dlist_node **head);
 
 int dlist_size(struct dlist_node *head);
 

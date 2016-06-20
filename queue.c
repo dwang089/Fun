@@ -53,12 +53,23 @@ void enqueue(struct queue *queue, void *new_data)
 
 void *dequeue(struct queue *queue)
 {
+    struct queue_node *temp = queue->front;
+    void *data;
+
     if (is_empty_queue(queue))
     {
-        return queue->front->data;
+        printf("The queue is empty\n");
+        return NULL;
     }
 
-    return NULL;
+    if (temp->next == NULL)
+    {
+        queue->end = NULL;
+    }
+    queue->front = temp->next;
+    data = temp->data;
+    free(temp);
+    return data;
 }
 
 void *front(struct queue *queue)
@@ -68,6 +79,7 @@ void *front(struct queue *queue)
         return queue->front->data;
     }
 
+    printf("The queue is empty\n");
     return NULL;
 }
 

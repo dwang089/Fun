@@ -55,19 +55,39 @@ void insert_slist_after(struct slist_node *prev_node, void *new_data)
     prev_node->next = new_node;
 }
 
-/*
-void remove_node(struct slist_node **head, int data)
+void *remove_slist_node(struct slist_node **head, struct slist_node *node)
 {
-    struct node *current = *head;
     struct node *prev = *head;
+    void *data;
 
-    if (current == NULL)
+    if (*head == NULL)
     {
-        return;  
+        printf("The slist is empty\n");
+        return NULL;
     }
 
+    if (node == *head)
+    {
+        *head = node->next; 
+    }
+    else
+    {
+
+    }
+
+    data = node->data;
+    free(node);
+
+    return data;
 }
-*/
+
+void clear_slist(struct slist_node **head)
+{
+    while (*head)
+    {
+        remove_slist_node(head, *head);
+    }
+}
 
 int slist_size(struct slist_node *head)
 {
@@ -98,5 +118,6 @@ void print_slist(struct slist_node *head, void (*fptr)(void *))
         temp = temp->next;
     }
 
-    printf("\nthe size of the slist is %d\n", slist_size(head));
+    printf("\n");
+    //printf("The size of the slist is %d\n", slist_size(head));
 }
