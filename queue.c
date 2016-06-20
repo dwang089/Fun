@@ -53,6 +53,11 @@ void enqueue(struct queue *queue, void *new_data)
 
 void *dequeue(struct queue *queue)
 {
+    if (is_empty_queue(queue))
+    {
+        return queue->front->data;
+    }
+
     return NULL;
 }
 
