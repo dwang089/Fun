@@ -88,7 +88,7 @@ struct dlist_node *get_dlist_node(struct dlist_node *head, void *data, size_t da
 
     while (node != NULL)
     {
-        if (!memcmp(node, data, data_size))
+        if (!memcmp(node->data, data, data_size))
         {
             return node;
         }
@@ -98,39 +98,44 @@ struct dlist_node *get_dlist_node(struct dlist_node *head, void *data, size_t da
     return NULL;
 }
 
-void remove_dlist_node(struct dlist_node **head, void *data, size_t data_size)
+static void remove_dlist_node(struct dlist_node **head, struct dlist_node *node)
 {
-    struct dlist_node *temp;
-
-    temp = get_dlist_node(*head, data, data_size);
-    if (temp == NULL)
+    if (node->next)
     {
-        printf("The node does not exist\n");
-        return;
-    }
-
-    if (temp->next)
-    {
-        temp->next->prev = temp->prev;
+        node->next->prev = node->prev;
     }   
 
-    if (temp == *head)
+    if (node == *head)
     {
-        *head = temp->next;
+        *head = node->next;
     }
     else
     {
-        temp->prev->next = temp->next;
+        node->prev->next = node->next;
     } 
     
-    free(temp);    
+    free(node);    
 }
 
-void clear_dlist(struct dlist_node **head)
+void remove_dlist_data(struct dlist_node **head, void *data, size_t data_size)
 {
-    while (*head)
+    struct dlist_node *node;
+
+    node = get_dlist_node(*head, data, data_size);
+    if (node == NULL)
     {
-        //remove_dlist_node(head, *head);
+        printf("The data does not exist\n");
+        return;
+    }
+
+    remove_dlist_node(head, node);
+}
+
+void clear_dlist(struct dlist_node *head)
+{
+    while (head)
+    {
+        remove_dlist_node(&head, head);
     }
 }
 
@@ -169,9 +174,26 @@ void print_dlist(struct dlist_node *head, void (*fptr)(void *))
 
 void reverse_dlist(struct dlist_node **head)
 {
+    struct dlist_node *current = *head; 
+    struct dlist_node *temp;
+
     if (*head == NULL)
     {
+        printf("The dlist is empty\n");
         return;
     }
+ 
+    while (current != NULL)
+    {
+        temp = current->prev;
+        current->prev = current->next;
+        current->next = temp;
+ 
+        if (current->prev)
+        {
+            current = current->prev;
+        } 
+    }
 
+    *head = current;   
 }

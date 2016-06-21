@@ -15,8 +15,10 @@ void insert_slist_front(struct slist_node **head, void *new_data);
 void insert_slist_end(struct slist_node **head, void *new_data);
 void insert_slist_after(struct slist_node *prev_node, void *new_data);
 
-void *remove_slist_node(struct slist_node **head, struct slist_node *node);
-void clear_slist(struct slist_node **head);
+struct slist_node *get_slist_node(struct slist_node *head, void *data, size_t data_size);
+
+void remove_slist_data(struct slist_node **head, void *data, size_t data_size);
+void clear_slist(struct slist_node *head);
 
 int slist_size(struct slist_node *head);
 

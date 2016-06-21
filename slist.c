@@ -55,16 +55,31 @@ void insert_slist_after(struct slist_node *prev_node, void *new_data)
     prev_node->next = new_node;
 }
 
-void *remove_slist_node(struct slist_node **head, struct slist_node *node)
+struct slist_node *get_slist_node(struct slist_node *head, void *data, size_t data_size)
 {
-    struct node *prev = *head;
-    void *data;
+    struct slist_node *node = head;
 
-    if (*head == NULL)
+    if (head == NULL)
     {
         printf("The slist is empty\n");
         return NULL;
     }
+
+    while (node != NULL)
+    {
+        if (!memcmp(node->data, data, data_size))
+        {
+            return node;
+        }
+        node = node->next;
+    }
+
+    return NULL;
+}
+
+static void remove_slist_node(struct slist_node **head, struct slist_node *node)
+{
+    struct slist_node *prev = *head;
 
     if (node == *head)
     {
@@ -72,20 +87,39 @@ void *remove_slist_node(struct slist_node **head, struct slist_node *node)
     }
     else
     {
+        while (prev && prev->next != node)
+        {
+            prev = prev->next;
+        }
 
+        if (prev)
+        {
+            prev->next = node->next;
+        }
     }
 
-    data = node->data;
     free(node);
-
-    return data;
 }
 
-void clear_slist(struct slist_node **head)
+void remove_slist_data(struct slist_node **head, void *data, size_t data_size)
 {
-    while (*head)
+    struct slist_node *node;
+
+    node = get_slist_node(*head, data, data_size);
+    if (node == NULL)
     {
-        remove_slist_node(head, *head);
+        printf("The node does not exist\n");
+        return;
+    }
+
+    remove_slist_node(head, node); 
+}
+
+void clear_slist(struct slist_node *head)
+{
+    while (head)
+    {
+        remove_slist_node(&head, head);
     }
 }
 
