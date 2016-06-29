@@ -14,7 +14,7 @@ static struct queue_node *create_queue_node(void *data)
     new_node->data = data;
     new_node->next = NULL;
 
-    return NULL;  
+    return new_node;  
 }
 
 struct queue *create_queue()
@@ -83,3 +83,12 @@ void *front(struct queue *queue)
     return NULL;
 }
 
+void clear_queue(struct queue *queue)
+{
+    while (queue->front)
+    {
+        dequeue(queue);
+    }
+   
+    free(queue);
+}

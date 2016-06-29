@@ -145,17 +145,30 @@ static void test_queue()
     enqueue(q, item1);
     enqueue(q, item2);
     dequeue(q);
-    printf("The top is %d\n", *((int *)front(q)));
+
+    if (!is_empty_queue(q))
+    {
+        printf("The top is %d\n", *((int *)front(q)));
+    }
 
     enqueue(q, item3);
     enqueue(q, item4);
     enqueue(q, item5);
     dequeue(q);
     dequeue(q);
-    printf("The top is %d\n", *((int *)front(q)));
+
+    if (!is_empty_queue(q))
+    {
+        printf("The top is %d\n", *((int *)front(q)));
+    }
         
-    dequeue(q);
-    dequeue(q);
+    clear_queue(q);
+
+    free(item1);
+    free(item2);
+    free(item3);
+    free(item4);
+    free(item5);
 }
 
 static void test_bintree()
@@ -168,7 +181,7 @@ int main()
     //test_slist();
     //test_dlist();
     //test_stack();
-    test_queue();
+    //test_queue();
     test_bintree();
 
     return 0;

@@ -18,5 +18,6 @@ bool is_empty_queue(struct queue *queue);
 void enqueue(struct queue *queue, void *new_data);
 void *dequeue(struct queue *queue);
 void *front(struct queue *queue);
+void clear_queue(struct queue *queue);
 
 #endif
