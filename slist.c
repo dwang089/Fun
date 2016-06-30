@@ -137,18 +137,13 @@ int slist_size(struct slist_node *head)
     return count;
 }
 
-void print_slist_int(void *data)
-{
-    printf("%d ", *(int *)data);
-}
-
-void print_slist(struct slist_node *head, void (*fptr)(void *))
+void print_slist(struct slist_node *head, void (*print_fptr)(void *))
 {
     struct slist_node *temp = head;
 
     while (temp != NULL) 
     {  
-        (*fptr)(temp->data);
+        print_fptr(temp->data);
         temp = temp->next;
     }
 

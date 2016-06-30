@@ -1,3 +1,4 @@
+#include "util.h"
 #include "slist.h"
 #include "dlist.h"
 #include "stack.h"
@@ -26,11 +27,11 @@ static void test_slist()
     insert_slist_front(&head, (void *)item3);
     insert_slist_end(&head, (void *)item4);
     insert_slist_after(head->next, (void *)item5);
-    print_slist(head, print_slist_int);
+    print_slist(head, print_int);
 
     remove_slist_data(&head, (void *)item3, sizeof(int));
     remove_slist_data(&head, (void *)item1, sizeof(int));
-    print_slist(head, print_dlist_int);
+    print_slist(head, print_int);
 
     clear_slist(head);
 
@@ -62,14 +63,14 @@ static void test_dlist()
     insert_dlist_front(&head, (void *)item3);
     insert_dlist_end(&head, (void *)item4);
     insert_dlist_after(head->next, (void *)item5);
-    print_dlist(head, print_dlist_int);
+    print_dlist(head, print_int);
 
     remove_dlist_data(&head, (void *)item3, sizeof(int));
     remove_dlist_data(&head, (void *)item1, sizeof(int));
-    print_dlist(head, print_dlist_int);
+    print_dlist(head, print_int);
 
     reverse_dlist(&head);
-    print_dlist(head, print_dlist_int);
+    print_dlist(head, print_int);
 
     clear_dlist(head);
 
@@ -196,19 +197,19 @@ static void test_bintree()
     insert_bintree(&(root->left->right), item5); 
 
     printf("Inorder traversal\n");
-    inorder_bintree(root, print_bintree_int);
+    inorder_bintree(root, print_int);
     printf("\n");
     
     printf("Preorder traversal\n");
-    preorder_bintree(root, print_bintree_int);
+    preorder_bintree(root, print_int);
     printf("\n");
     
     printf("Postorder traversal\n");
-    postorder_bintree(root, print_bintree_int);
+    postorder_bintree(root, print_int);
     printf("\n");
     
     printf("Level-order traversal\n");
-    level_order_bintree(root, print_bintree_int);
+    level_order_bintree(root, print_int);
     printf("\n");
     
     printf("The height is %d\n", bintree_height(root));
@@ -237,6 +238,29 @@ static void test_bstree()
     *item5 = 50;
    
     tree = create_bstree();
+    insert_bstree(tree, item1, cmp_int);
+    insert_bstree(tree, item2, cmp_int);
+    insert_bstree(tree, item3, cmp_int);
+    insert_bstree(tree, item4, cmp_int);
+    insert_bstree(tree, item5, cmp_int);
+
+    printf("Inorder traversal\n");
+    inorder_bstree(tree, print_int);
+    printf("\n");
+    
+    printf("Preorder traversal\n");
+    preorder_bstree(tree, print_int);
+    printf("\n");
+    
+    printf("Postorder traversal\n");
+    postorder_bstree(tree, print_int);
+    printf("\n");
+    
+    printf("Level-order traversal\n");
+    level_order_bstree(tree, print_int);
+    printf("\n");
+    
+    printf("The height is %d\n", bstree_height(tree));
 
     free(item1);
     free(item2);
@@ -251,7 +275,7 @@ int main()
     //test_dlist();
     //test_stack();
     //test_queue();
-    test_bintree();
+    //test_bintree();
     test_bstree();
 
     return 0;

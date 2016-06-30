@@ -22,7 +22,6 @@ void clear_slist(struct slist_node *head);
 
 int slist_size(struct slist_node *head);
 
-void print_slist_int(void *data);
-void print_slist(struct slist_node *head, void (* fptr)(void *));
+void print_slist(struct slist_node *head, void (*print_fptr)(void *));
 
 #endif

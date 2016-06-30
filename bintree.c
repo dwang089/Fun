@@ -20,7 +20,7 @@ void insert_bintree(struct bintree_node **node, void *data)
     *node = new_node;
 }
 
-void inorder_bintree(struct bintree_node *node, void (*fptr)(struct bintree_node *))
+void inorder_bintree(struct bintree_node *node, void (*fptr)(void *))
 {
     if (node == NULL)
     {
@@ -28,23 +28,23 @@ void inorder_bintree(struct bintree_node *node, void (*fptr)(struct bintree_node
     }
 
     inorder_bintree(node->left, fptr);
-    fptr(node);
+    fptr(node->data);
     inorder_bintree(node->right, fptr);
 }
 
-void preorder_bintree(struct bintree_node *node, void (*fptr)(struct bintree_node *))
+void preorder_bintree(struct bintree_node *node, void (*fptr)(void *))
 {
     if (node == NULL)
     {
         return;
     }
 
-    fptr(node);
+    fptr(node->data);
     preorder_bintree(node->left, fptr);
     preorder_bintree(node->right, fptr);
 }
 
-void postorder_bintree(struct bintree_node *node, void (*fptr)(struct bintree_node *))
+void postorder_bintree(struct bintree_node *node, void (*fptr)(void *))
 {
     if (node == NULL)
     {
@@ -53,11 +53,11 @@ void postorder_bintree(struct bintree_node *node, void (*fptr)(struct bintree_no
 
     postorder_bintree(node->left, fptr);
     postorder_bintree(node->right, fptr);
-    fptr(node);
+    fptr(node->data);
 }
 
 static void level_order_bintree_at_level(struct bintree_node *node, 
-        void (*fptr)(struct bintree_node *), int height)
+        void (*fptr)(void *), int height)
 {
     if (node == NULL)
     {
@@ -66,7 +66,7 @@ static void level_order_bintree_at_level(struct bintree_node *node,
 
     if (height == 1)
     {
-        fptr(node);
+        fptr(node->data);
     }
     else 
     {
@@ -75,7 +75,7 @@ static void level_order_bintree_at_level(struct bintree_node *node,
     }    
 }
 
-void level_order_bintree(struct bintree_node *node, void (*fptr)(struct bintree_node *))
+void level_order_bintree(struct bintree_node *node, void (*fptr)(void *))
 {
     int height;
     int i;
@@ -100,7 +100,3 @@ int bintree_height(struct bintree_node *node)
         (bintree_height(node->left) + 1) : (bintree_height(node->left) + 1); 
 }
 
-void print_bintree_int(struct bintree_node *node)
-{
-    printf("%d ", *(int *)node->data);
-}

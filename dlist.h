@@ -23,8 +23,7 @@ void clear_dlist(struct dlist_node *head);
 
 int dlist_size(struct dlist_node *head);
 
-void print_dlist_int(void *data);
-void print_dlist(struct dlist_node *head, void (* fptr)(void *));
+void print_dlist(struct dlist_node *head, void (*print_fptr)(void *));
 
 void reverse_dlist(struct dlist_node **head);
 

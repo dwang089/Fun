@@ -2,11 +2,14 @@ CFLAGS = -g -Wall
 
 all: hello
 
-hello: hello.o slist.o dlist.o stack.o queue.o bintree.o bstree.o
-	gcc $(CFLAGS) hello.o slist.o dlist.o stack.o queue.o bintree.o bstree.o -o hello 
+hello: hello.o util.o slist.o dlist.o stack.o queue.o bintree.o bstree.o
+	gcc $(CFLAGS) hello.o util.o slist.o dlist.o stack.o queue.o bintree.o bstree.o -o hello 
 
 hello.o: hello.c
 	gcc $(CFLAGS) -c hello.c
+
+util.o: util.c
+	gcc $(CFLAGS) -c util.c
 
 slist.o: slist.c
 	gcc $(CFLAGS) -c slist.c

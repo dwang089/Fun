@@ -153,18 +153,13 @@ int dlist_size(struct dlist_node *head)
     return count;
 }
 
-void print_dlist_int(void *data)
-{
-    printf("%d ", *(int *)data);
-}
-
-void print_dlist(struct dlist_node *head, void (*fptr)(void *))
+void print_dlist(struct dlist_node *head, void (*print_fptr)(void *))
 {
     struct dlist_node *temp = head;
 
     while (temp != NULL)
     {
-        fptr(temp->data);
+        print_fptr(temp->data);
         temp = temp->next;
     }
 

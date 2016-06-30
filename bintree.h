@@ -13,13 +13,11 @@ struct bintree_node
 
 void insert_bintree(struct bintree_node **node, void *data);
 
-void inorder_bintree(struct bintree_node *node, void (*fptr)(struct bintree_node *));
-void preorder_bintree(struct bintree_node *node, void (*fptr)(struct bintree_node *));
-void postorder_bintree(struct bintree_node *node, void (*fptr)(struct bintree_node *));
-void level_order_bintree(struct bintree_node *node, void (*fptr)(struct bintree_node *));
+void inorder_bintree(struct bintree_node *node, void (*fptr)(void *));
+void preorder_bintree(struct bintree_node *node, void (*fptr)(void *));
+void postorder_bintree(struct bintree_node *node, void (*fptr)(void *));
+void level_order_bintree(struct bintree_node *node, void (*fptr)(void *));
 
 int bintree_height(struct bintree_node *node);
-
-void print_bintree_int(struct bintree_node *node);
 
 #endif
