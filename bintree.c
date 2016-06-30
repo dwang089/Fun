@@ -20,19 +20,19 @@ void insert_bintree(struct bintree_node **node, void *data)
     *node = new_node;
 }
 
-void inorder(struct bintree_node *node, void (*fptr)(struct bintree_node *))
+void inorder_bintree(struct bintree_node *node, void (*fptr)(struct bintree_node *))
 {
     if (node == NULL)
     {
         return;
     }
 
-    inorder(node->left, fptr);
+    inorder_bintree(node->left, fptr);
     fptr(node);
-    inorder(node->right, fptr);
+    inorder_bintree(node->right, fptr);
 }
 
-void preorder(struct bintree_node *node, void (*fptr)(struct bintree_node *))
+void preorder_bintree(struct bintree_node *node, void (*fptr)(struct bintree_node *))
 {
     if (node == NULL)
     {
@@ -40,23 +40,23 @@ void preorder(struct bintree_node *node, void (*fptr)(struct bintree_node *))
     }
 
     fptr(node);
-    preorder(node->left, fptr);
-    preorder(node->right, fptr);
+    preorder_bintree(node->left, fptr);
+    preorder_bintree(node->right, fptr);
 }
 
-void postorder(struct bintree_node *node, void (*fptr)(struct bintree_node *))
+void postorder_bintree(struct bintree_node *node, void (*fptr)(struct bintree_node *))
 {
     if (node == NULL)
     {
         return;
     }
 
-    postorder(node->left, fptr);
-    postorder(node->right, fptr);
+    postorder_bintree(node->left, fptr);
+    postorder_bintree(node->right, fptr);
     fptr(node);
 }
 
-static void level_order_at_level(struct bintree_node *node, 
+static void level_order_bintree_at_level(struct bintree_node *node, 
         void (*fptr)(struct bintree_node *), int height)
 {
     if (node == NULL)
@@ -70,12 +70,12 @@ static void level_order_at_level(struct bintree_node *node,
     }
     else 
     {
-        level_order_at_level(node->left, fptr, height - 1);
-        level_order_at_level(node->right, fptr, height - 1);
+        level_order_bintree_at_level(node->left, fptr, height - 1);
+        level_order_bintree_at_level(node->right, fptr, height - 1);
     }    
 }
 
-void level_order(struct bintree_node *node, void (*fptr)(struct bintree_node *))
+void level_order_bintree(struct bintree_node *node, void (*fptr)(struct bintree_node *))
 {
     int height;
     int i;
@@ -84,7 +84,7 @@ void level_order(struct bintree_node *node, void (*fptr)(struct bintree_node *))
 
     for (i = 1; i <= height; i++)
     {
-        level_order_at_level(node, fptr, i);       
+        level_order_bintree_at_level(node, fptr, i);       
     } 
 }
 

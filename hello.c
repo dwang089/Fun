@@ -196,19 +196,19 @@ static void test_bintree()
     insert_bintree(&(root->left->right), item5); 
 
     printf("Inorder traversal\n");
-    inorder(root, print_bintree_int);
+    inorder_bintree(root, print_bintree_int);
     printf("\n");
     
     printf("Preorder traversal\n");
-    preorder(root, print_bintree_int);
+    preorder_bintree(root, print_bintree_int);
     printf("\n");
     
     printf("Postorder traversal\n");
-    postorder(root, print_bintree_int);
+    postorder_bintree(root, print_bintree_int);
     printf("\n");
     
     printf("Level-order traversal\n");
-    level_order(root, print_bintree_int);
+    level_order_bintree(root, print_bintree_int);
     printf("\n");
     
     printf("The height is %d\n", bintree_height(root));
@@ -236,7 +236,7 @@ static void test_bstree()
     item5 = malloc(sizeof(int));
     *item5 = 50;
    
-    //tree = create_bstree();
+    tree = create_bstree();
 
     free(item1);
     free(item2);
