@@ -16,7 +16,7 @@ void insert_bintree(struct bintree_node **node, void *data);
 void inorder(struct bintree_node *node, void (*fptr)(struct bintree_node *));
 void preorder(struct bintree_node *node, void (*fptr)(struct bintree_node *));
 void postorder(struct bintree_node *node, void (*fptr)(struct bintree_node *));
-void leve_order(struct bintree_node *node, void (*fptr)(struct bintree_node *));
+void level_order(struct bintree_node *node, void (*fptr)(struct bintree_node *));
 
 int bintree_height(struct bintree_node *node);
 

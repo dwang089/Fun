@@ -3,6 +3,7 @@
 #include "stack.h"
 #include "queue.h"
 #include "bintree.h"
+#include "bstree.h"
 
 static void test_slist() 
 {
@@ -206,6 +207,37 @@ static void test_bintree()
     postorder(root, print_bintree_int);
     printf("\n");
     
+    printf("Level-order traversal\n");
+    level_order(root, print_bintree_int);
+    printf("\n");
+    
+    printf("The height is %d\n", bintree_height(root));
+
+    free(item1);
+    free(item2);
+    free(item3);
+    free(item4);
+    free(item5);
+}
+
+static void test_bstree()
+{
+    struct bstree *tree;
+    int *item1, *item2, *item3, *item4, *item5;
+
+    item1 = malloc(sizeof(int));
+    *item1 = 30;
+    item2 = malloc(sizeof(int));
+    *item2 = 10;
+    item3 = malloc(sizeof(int));
+    *item3 = 20;
+    item4 = malloc(sizeof(int));
+    *item4 = 40;
+    item5 = malloc(sizeof(int));
+    *item5 = 50;
+   
+    //tree = create_bstree();
+
     free(item1);
     free(item2);
     free(item3);
@@ -220,6 +252,7 @@ int main()
     //test_stack();
     //test_queue();
     test_bintree();
+    test_bstree();
 
     return 0;
 }
