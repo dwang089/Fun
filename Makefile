@@ -2,8 +2,8 @@ CFLAGS = -g -Wall
 
 all: hello
 
-hello: hello.o util.o slist.o dlist.o stack.o queue.o bintree.o bstree.o minheap.o
-	gcc $(CFLAGS) hello.o util.o slist.o dlist.o stack.o queue.o bintree.o bstree.o minheap.o -o hello 
+hello: hello.o util.o slist.o dlist.o stack.o queue.o bintree.o bstree.o minheap.o sort.o
+	gcc $(CFLAGS) hello.o util.o slist.o dlist.o stack.o queue.o bintree.o bstree.o minheap.o sort.o -o hello 
 
 hello.o: hello.c
 	gcc $(CFLAGS) -c hello.c
@@ -31,6 +31,9 @@ bstree.o: bstree.c
 
 minheap.o: minheap.c
 	gcc $(CFLAGS) -c minheap.c
+
+sort.o: sort.c
+	gcc $(CFLAGS) -c sort.c
 
 clean:
 	rm *o 

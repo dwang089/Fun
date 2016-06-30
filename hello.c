@@ -5,6 +5,8 @@
 #include "queue.h"
 #include "bintree.h"
 #include "bstree.h"
+#include "minheap.h"
+#include "sort.h"
 
 static void test_slist() 
 {
@@ -273,6 +275,69 @@ static void test_bstree()
     free(item5);
 }
 
+static void test_minheap()
+{
+
+}
+
+static void test_sort()
+{
+    int **array;
+    size_t size = 5;
+    int *item1, *item2, *item3, *item4, *item5, *item6;
+
+    array = malloc(size * sizeof(int *));
+    item1 = malloc(sizeof(int));
+    *item1 = 30;
+    array[0] = item1;
+    item2 = malloc(sizeof(int));
+    *item2 = 10;
+    array[1] = item2;
+    item3 = malloc(sizeof(int));
+    *item3 = 20;
+    array[2] = item3;
+    item4 = malloc(sizeof(int));
+    *item4 = 50;
+    array[3] = item4;
+    item5 = malloc(sizeof(int));
+    *item5 = 40;
+    array[4] = item5;
+    item6 = malloc(sizeof(int));
+    *item6 = 25;
+   
+    print_array((void **)array, size, print_int);
+ 
+    /*
+    bubble_sort((void **)array, size, cmp_int);
+    printf("After bubble sort\n"); 
+    print_array((void **)array, size, print_int);
+
+    selection_sort((void **)array, size, cmp_int);
+    printf("After selection sort\n"); 
+    print_array((void **)array, size, print_int);
+  
+    insertion_sort((void **)array, size, cmp_int);
+    printf("After insertion sort\n"); 
+    print_array((void **)array, size, print_int);
+    */
+ 
+    merge_sort((void **)array, size, cmp_int);
+    printf("After merge sort\n"); 
+    print_array((void **)array, size, print_int);
+   
+    printf("item3 is element %d\n", 
+            bin_search((void **)array, item3, 0, size - 1, cmp_int));
+    printf("item6 is element %d\n", 
+            bin_search((void **)array, item6, 0, size - 1, cmp_int));
+    
+    free(item1);
+    free(item2);
+    free(item3);
+    free(item4);
+    free(item5);
+    free(array);
+}
+
 int main()
 {
     //test_slist();
@@ -280,7 +345,9 @@ int main()
     //test_stack();
     //test_queue();
     //test_bintree();
-    test_bstree();
+    //test_bstree();
+    //test_minheap();
+    test_sort();
 
     return 0;
 }
