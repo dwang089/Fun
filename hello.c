@@ -214,6 +214,8 @@ static void test_bintree()
     
     printf("The height is %d\n", bintree_height(root));
 
+    clear_bintree(root);
+
     free(item1);
     free(item2);
     free(item3);
@@ -261,6 +263,8 @@ static void test_bstree()
     printf("\n");
     
     printf("The height is %d\n", bstree_height(tree));
+
+    clear_bstree(tree);
 
     free(item1);
     free(item2);

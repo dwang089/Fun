@@ -10,6 +10,7 @@ struct bstree
 
 struct bstree *create_bstree();
 void insert_bstree(struct bstree *tree, void *data, int (*cmp_fptr)(void *, void *));
+void remove_bstree(struct bstree *tree, void *data, int (*cmp_fptr)(void *, void *));
 
 void inorder_bstree(struct bstree *tree, void (*fptr)(void *));
 void preorder_bstree(struct bstree *tree, void (*fptr)(void *));
@@ -17,5 +18,7 @@ void postorder_bstree(struct bstree *tree, void (*fptr)(void *));
 void level_order_bstree(struct bstree *tree, void (*fptr)(void *));
 
 int bstree_height(struct bstree *tree);
+
+void clear_bstree(struct bstree *tree);
 
 #endif

@@ -20,4 +20,6 @@ void level_order_bintree(struct bintree_node *node, void (*fptr)(void *));
 
 int bintree_height(struct bintree_node *node);
 
+void clear_bintree(struct bintree_node *node);
+
 #endif

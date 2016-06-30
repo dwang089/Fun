@@ -21,17 +21,47 @@ static void insert_bstree_from_node(struct bintree_node **node, void *data,
 
     if (cmp_fptr(data, (*node)->data) <= 0)
     {
-        insert_bstree_from_node(&((*node)->left), data, cmp_fptr);
+        return insert_bstree_from_node(&((*node)->left), data, cmp_fptr);
     }
     else
     {
-        insert_bstree_from_node(&((*node)->right), data, cmp_fptr);
+        return insert_bstree_from_node(&((*node)->right), data, cmp_fptr);
     }
 }
 
 void insert_bstree(struct bstree *tree, void *data, int (*cmp_fptr)(void *, void *))
 {
     insert_bstree_from_node(&(tree->root), data, cmp_fptr);
+}
+
+static void *remove_bstree_from_node(struct bintree_node *node, 
+        void *data, int (*cmp_fptr)(void *, void *))
+{
+    if (node == NULL)
+    {
+        return NULL;
+    }
+
+    if (cmp_fptr(data, node->data) < 0)
+    {
+        return remove_bstree_from_node(node->left, data, cmp_fptr);
+    }
+    else if (cmp_fptr(data, node->data) > 0)
+    {
+        return remove_bstree_from_node(node->right, data, cmp_fptr);
+    }
+    
+    if (node->left == NULL)
+    {
+    
+    }
+
+    return NULL; 
+}
+
+void remove_bstree(struct bstree *tree, void *data, int (*cmp_fptr)(void *, void *))
+{
+    remove_bstree_from_node(tree->root, data, cmp_fptr);     
 }
 
 void inorder_bstree(struct bstree *tree, void (*fptr)(void *))
@@ -57,4 +87,10 @@ void level_order_bstree(struct bstree *tree, void (*fptr)(void *))
 int bstree_height(struct bstree *tree)
 {
     return bintree_height(tree->root);
+}
+
+void clear_bstree(struct bstree *tree)
+{
+    clear_bintree(tree->root);
+    free(tree);
 }

@@ -95,8 +95,19 @@ int bintree_height(struct bintree_node *node)
         return 0;
     }
  
-    return ((bintree_height(node->left) + 1) < 
+    return ((bintree_height(node->left) + 1) >
             (bintree_height(node->right) + 1)) ?
-        (bintree_height(node->left) + 1) : (bintree_height(node->left) + 1); 
+        (bintree_height(node->left) + 1) : (bintree_height(node->right) + 1); 
 }
 
+void clear_bintree(struct bintree_node *node)
+{
+    if (node == NULL)
+    {
+        return;
+    }
+
+    clear_bintree(node->left);
+    clear_bintree(node->right);
+    free(node);   
+}
