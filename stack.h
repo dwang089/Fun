@@ -16,5 +16,6 @@ bool is_empty_stack(struct stack_node *root);
 void push(struct stack_node **root, void *new_data);
 void *pop(struct stack_node **root);
 void *peek(struct stack_node *root);
+void clear_stack(struct stack_node *root);
 
 #endif

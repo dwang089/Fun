@@ -192,6 +192,10 @@ void reverse_dlist(struct dlist_node **head)
         if (current->prev)
         {
             current = current->prev;
+        }
+        else
+        {
+            break;
         } 
     }
 

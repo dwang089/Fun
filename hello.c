@@ -82,7 +82,7 @@ static void test_dlist()
 static void test_stack()
 {
     struct stack_node *root = NULL;
-    int *item1, *item2, *item3;
+    int *item1, *item2, *item3, *item4, *item5;
 
     item1 = malloc(sizeof(int));
     *item1 = 10;
@@ -90,6 +90,10 @@ static void test_stack()
     *item2 = 20;
     item3 = malloc(sizeof(int));
     *item3 = 30;
+    item4 = malloc(sizeof(int));
+    *item4 = 40;
+    item5 = malloc(sizeof(int));
+    *item5 = 50;
 
     push(&root, (void *)item1); 
     push(&root, (void *)item2); 
@@ -104,25 +108,22 @@ static void test_stack()
     { 
         printf("The top is %d\n", *((int *)peek(root)));
     }
-    pop(&root);
-    if (!is_empty_stack(root)) 
-    { 
-        printf("The top is %d\n", *((int *)peek(root)));
-    }
-    pop(&root);
-    if (!is_empty_stack(root)) 
-    { 
-        printf("The top is %d\n", *((int *)peek(root)));
-    }
+
+    push(&root, (void *)item4); 
+    push(&root, (void *)item5);
     pop(&root);
     if (!is_empty_stack(root)) 
     { 
         printf("The top is %d\n", *((int *)peek(root)));
     }
 
+    clear_stack(root);
+
     free(item1);
     free(item2);
     free(item3);
+    free(item4);
+    free(item5);
 }
 
 static void test_queue()
@@ -173,7 +174,43 @@ static void test_queue()
 
 static void test_bintree()
 {
+    struct bintree_node *root = NULL;
+    int *item1, *item2, *item3, *item4, *item5;
 
+    item1 = malloc(sizeof(int));
+    *item1 = 10;
+    item2 = malloc(sizeof(int));
+    *item2 = 20;
+    item3 = malloc(sizeof(int));
+    *item3 = 30;
+    item4 = malloc(sizeof(int));
+    *item4 = 40;
+    item5 = malloc(sizeof(int));
+    *item5 = 50;
+
+    insert_bintree(&root, item1); 
+    insert_bintree(&(root->left), item2); 
+    insert_bintree(&(root->right), item3); 
+    insert_bintree(&(root->left->left), item4); 
+    insert_bintree(&(root->left->right), item5); 
+
+    printf("Inorder traversal\n");
+    inorder(root, print_bintree_int);
+    printf("\n");
+    
+    printf("Preorder traversal\n");
+    preorder(root, print_bintree_int);
+    printf("\n");
+    
+    printf("Postorder traversal\n");
+    postorder(root, print_bintree_int);
+    printf("\n");
+    
+    free(item1);
+    free(item2);
+    free(item3);
+    free(item4);
+    free(item5);
 }
 
 int main()

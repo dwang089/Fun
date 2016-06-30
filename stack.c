@@ -53,3 +53,11 @@ void *peek(struct stack_node *root)
     printf("The stack is empty\n");
     return NULL;
 }
+
+void clear_stack(struct stack_node *root)
+{
+    while (root)
+    {
+        pop(&root);
+    }
+}
